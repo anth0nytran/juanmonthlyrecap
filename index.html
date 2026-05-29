@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JN Ornamental — Month 1 Review & Month 2 Plan</title>
+<style>
+  :root{
+    --iron:#15181c; --iron2:#23272e; --steel:#4a525c; --line:#e3e6ea;
+    --bronze:#b8743a; --bronze-lt:#e8a36b; --paper:#f5f3f0; --card:#ffffff;
+    --green:#2e7d4f; --green-lt:#e7f3ec; --amber:#c08a2d; --amber-lt:#fff3da;
+    --red:#b3413a; --red-lt:#fbe9e8; --blue:#2f5da8; --blue-lt:#e8eef7;
+    --ink:#15181c; --muted:#6b7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.55;padding-bottom:80px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  header{background:linear-gradient(135deg,var(--iron),var(--iron2));color:#fff;padding:40px 0 34px;
+    border-bottom:3px solid var(--bronze)}
+  header .wrap{display:flex;flex-direction:column;gap:7px}
+  .brand{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--bronze-lt);font-weight:600}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.5px}
+  .sub{color:#aab2bd;font-size:16px}
+  .dates{font-size:13px;color:#8b93a0;margin-top:4px}
+
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:-24px auto 0;position:relative}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 14px;
+    box-shadow:0 4px 14px rgba(20,22,26,.07)}
+  .stat .n{font-size:24px;font-weight:800;color:var(--iron);line-height:1.1}
+  .stat .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-top:4px;font-weight:600}
+  .stat .green{color:var(--green)} .stat .bronze{color:var(--bronze)} .stat .blue{color:var(--blue)}
+
+  .section-title{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--bronze);
+    font-weight:700;margin:40px 0 16px;display:flex;align-items:center;gap:10px}
+  .section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .intro{background:#fff;border:1px solid var(--line);border-left:3px solid var(--bronze);
+    border-radius:10px;padding:18px 20px;margin-top:24px;font-size:15.5px;color:#3a4048}
+  .intro b{color:var(--iron)}
+
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:7px}
+  .frow{display:flex;align-items:center;gap:14px}
+  .fname{width:170px;font-size:13.5px;font-weight:700;color:var(--iron);text-align:right;flex-shrink:0}
+  .fbar-wrap{flex:1;background:#edeef0;border-radius:7px;overflow:hidden;height:34px;position:relative}
+  .fbar{height:100%;display:flex;align-items:center;padding-left:12px;color:#fff;font-weight:700;font-size:13px;
+    border-radius:7px;white-space:nowrap;transition:width .6s}
+  .fmeta{width:120px;font-size:12.5px;color:var(--muted);flex-shrink:0}
+  .fmeta b{color:var(--iron)}
+
+  /* money cards */
+  .money-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    border-top:3px solid var(--steel);position:relative}
+  .mcard.big{border-top-color:var(--green)}
+  .mcard .mname{font-size:15px;font-weight:700;color:var(--iron)}
+  .mcard .mval{font-size:22px;font-weight:800;color:var(--green);margin:3px 0}
+  .mcard .mstage{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600}
+  .mcard .mage{font-size:11px;color:#9aa1ab;margin-top:3px}
+
+  /* reframe box */
+  .reframe{background:linear-gradient(135deg,#1d2127,#2b3038);color:#fff;border-radius:14px;
+    padding:28px 30px;margin-top:18px;border:1px solid #343a43}
+  .reframe h2{font-size:21px;color:var(--bronze-lt);margin-bottom:6px}
+  .reframe .punch{font-size:17px;font-weight:600;color:#fff;margin:14px 0;line-height:1.5}
+  .reframe .punch .hl{color:var(--bronze-lt);font-weight:800}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+  .splitcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px}
+  .splitcard .sh{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px}
+  .splitcard.bad .sh{color:#e8918a} .splitcard.good .sh{color:#7fd3a3}
+  .splitcard .sn{font-size:32px;font-weight:800;line-height:1}
+  .splitcard .sd{font-size:13px;color:#aab2bd;margin-top:6px}
+  .quote{font-size:15px;font-style:italic;color:#cdd3db;border-left:3px solid var(--bronze);padding-left:14px;margin-top:16px}
+
+  /* lead review table */
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:11px;margin-bottom:11px;overflow:hidden}
+  .lead-head{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;
+    background:#fafbfc;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:8px}
+  .lh-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .lead-name{font-size:16px;font-weight:700;color:var(--iron)}
+  .lead-val{font-size:15px;font-weight:800;color:var(--green)}
+  .lead-val.zero{color:#b8bcc2}
+  .lead-meta{font-size:12px;color:var(--muted)}
+  .pill{font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px}
+  .p-sched{background:var(--green-lt);color:var(--green)}
+  .p-prop{background:var(--amber-lt);color:var(--amber)}
+  .p-neg{background:var(--blue-lt);color:var(--blue)}
+  .p-follow{background:#f3e8fb;color:#9333c0}
+  .p-new{background:#eef0f2;color:var(--steel)}
+  .p-resched{background:#fde9d9;color:#c05a1a}
+  .lead-body{padding:14px 16px;display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+  .rate-block{flex:1;min-width:230px}
+  .rate-label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:7px}
+  .stars{display:flex;gap:5px}
+  .star{width:32px;height:32px;border:1.5px solid var(--line);border-radius:7px;background:#fff;
+    cursor:pointer;font-size:12px;font-weight:700;color:var(--steel);display:flex;align-items:center;justify-content:center;transition:all .12s}
+  .star:hover{border-color:var(--bronze);color:var(--bronze)}
+  .star.sel{background:var(--bronze);border-color:var(--bronze);color:#fff}
+  .status{display:flex;gap:6px;flex-wrap:wrap}
+  .stag{font-size:12px;font-weight:700;padding:6px 12px;border-radius:7px;border:1.5px solid var(--line);
+    background:#fff;color:var(--steel);cursor:pointer;transition:all .12s}
+  .stag:hover{border-color:var(--steel)}
+  .stag.sel[data-s="Alive"]{background:var(--green);border-color:var(--green);color:#fff}
+  .stag.sel[data-s="Dead"]{background:var(--red);border-color:var(--red);color:#fff}
+  .stag.sel[data-s="Already Won"]{background:var(--bronze);border-color:var(--bronze);color:#fff}
+  .stag.sel[data-s="Never Updated"]{background:var(--blue);border-color:var(--blue);color:#fff}
+  .notes{flex:1.5;min-width:230px}
+  .notes textarea{width:100%;min-height:54px;border:1px solid var(--line);border-radius:8px;
+    padding:9px 11px;font-family:inherit;font-size:14px;resize:vertical;color:var(--ink)}
+  .notes textarea:focus{outline:none;border-color:var(--bronze)}
+
+  /* goals */
+  .goal{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:11px;
+    padding:18px 20px;margin-bottom:12px;border-left:3px solid var(--bronze)}
+  .goal .num{font-size:26px;font-weight:800;color:var(--bronze-lt);min-width:34px}
+  .goal .gbody h3{font-size:16px;color:var(--iron);margin-bottom:4px}
+  .goal .gbody p{font-size:14px;color:#4a525c}
+  .goal .gbody .tag{display:inline-block;background:var(--green-lt);color:var(--green);font-size:11px;font-weight:700;
+    padding:2px 9px;border-radius:6px;margin-top:7px}
+  .goal{flex-direction:row}
+  .fb-opts{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 10px}
+  .fbopt{font-size:13px;font-weight:600;padding:7px 13px;border-radius:8px;border:1.5px solid var(--line);
+    background:#fff;color:var(--steel);cursor:pointer;transition:all .12s}
+  .fbopt:hover{border-color:var(--bronze);color:var(--bronze)}
+  .fbopt.sel{background:var(--bronze);border-color:var(--bronze);color:#fff}
+  .fb-note{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;
+    font-family:inherit;font-size:14px;resize:vertical;color:var(--ink);margin-top:2px}
+  .fb-note:focus{outline:none;border-color:var(--bronze)}
+
+  .callout{background:var(--amber-lt);border:1px solid #f0dba8;border-radius:10px;padding:16px 18px;margin-top:16px;font-size:14.5px;color:#6b551d}
+  .callout b{color:#4a3d12}
+
+  .toolbar{position:fixed;bottom:0;left:0;right:0;background:var(--iron);padding:13px;text-align:center;
+    box-shadow:0 -4px 16px rgba(0,0,0,.18);z-index:50}
+  .btn{background:var(--bronze);color:#fff;border:none;padding:11px 28px;border-radius:8px;font-size:14px;
+    font-weight:700;cursor:pointer;letter-spacing:.3px}
+  .btn:hover{background:var(--bronze-lt)}
+  .mini{font-size:11px;color:#8b93a0;margin-top:6px}
+
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}h1{font-size:26px}.fname{width:110px}.fmeta{width:90px}}
+  @media print{.toolbar{display:none}.star,.fbar,.splitcard,.reframe{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">JN Ornamental Design × QuickLaunchWeb</div>
+    <h1>Month 1 Review &amp; Month 2 Plan</h1>
+    <div class="sub">Facebook ad system — where every lead landed, where the money is, what changes next</div>
+    <div class="dates">May 5 – May 28, 2026 · First full month of paid lead gen</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">25</div><div class="l">FB Leads Generated</div></div>
+    <div class="stat"><div class="n">~$610</div><div class="l">Ad Spend</div></div>
+    <div class="stat"><div class="n green">$5,500</div><div class="l">Closed &amp; Won</div></div>
+    <div class="stat"><div class="n bronze">$45,910</div><div class="l">Open Pipeline</div></div>
+    <div class="stat"><div class="n blue">9.0x</div><div class="l">Return So Far</div></div>
+  </div>
+
+  <div class="intro">
+    Juan — month one is in the books. We spent <b>~$610</b> on Facebook and it produced <b>25 leads</b>,
+    <b>2 closed jobs ($5,500)</b>, and a pipeline of <b>$45,910</b> still in play. That's a
+    <b>9x return already</b> — and up to <b>84x</b> if we close what's open. The machine works.
+    <br><br>
+    But you told me something important: <b>"too many estimates."</b> You're right — and the data tells us
+    exactly why, and exactly how to fix it without slowing your pipeline. That's what this is about.
+  </div>
+
+  <!-- FUNNEL -->
+  <div class="section-title">Where All 25 Leads Landed</div>
+  <div class="funnel">
+    <div class="frow"><div class="fname">New Lead</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:16%;background:var(--steel)">1</div></div>
+      <div class="fmeta"><b>1 lead</b> · fresh</div></div>
+    <div class="frow"><div class="fname">Contacted</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:26%;background:var(--steel)">2</div></div>
+      <div class="fmeta"><b>2 leads</b> · reached</div></div>
+    <div class="frow"><div class="fname">Estimate Scheduled</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:16%;background:#0D9488">1</div></div>
+      <div class="fmeta"><b>1 lead</b> · booked</div></div>
+    <div class="frow"><div class="fname">Reschedule Estimate</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:26%;background:#c05a1a">2</div></div>
+      <div class="fmeta"><b>2 leads</b> · rebooking</div></div>
+    <div class="frow"><div class="fname">Proposal Sent</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:72%;background:var(--amber)">7</div></div>
+      <div class="fmeta"><b>7 leads</b> · quoted</div></div>
+    <div class="frow"><div class="fname">Negotiation</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:26%;background:var(--blue)">2</div></div>
+      <div class="fmeta"><b>2 leads</b> · closing</div></div>
+    <div class="frow"><div class="fname">Future Follow-Up</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:36%;background:#9333c0">3</div></div>
+      <div class="fmeta"><b>3 leads</b> · June</div></div>
+    <div class="frow"><div class="fname">Won</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:26%;background:var(--green)">2</div></div>
+      <div class="fmeta"><b>2 jobs</b> · $5,500</div></div>
+    <div class="frow"><div class="fname">Lost</div>
+      <div class="fbar-wrap"><div class="fbar" style="width:50%;background:var(--red)">5</div></div>
+      <div class="fmeta"><b>5 leads</b> · dead</div></div>
+  </div>
+  <div class="mini" style="text-align:center;margin-top:10px;color:var(--muted)">
+    Facebook leads only (25). In GHL your stage counts will look bigger — that includes website,
+    Angie's List &amp; referral leads (38 total in the pipeline).
+  </div>
+  <div class="callout">
+    <b>Read this:</b> 7 leads are sitting in <b>Proposal Sent</b> — that's the biggest cluster. Quotes are
+    going out but not closing fast. Closing 2-3 of those is the single fastest money on the board.
+  </div>
+
+  <!-- MONEY -->
+  <div class="section-title">Where The Money Actually Is</div>
+  <div class="intro" style="margin-top:0;border-left-color:var(--green)">
+    Your $45,910 open pipeline isn't spread evenly. <b>Four leads make up 80% of it.</b> These are the
+    names that matter. Everything else is gravy.
+  </div>
+  <div class="money-grid" style="margin-top:16px">
+    <div class="mcard big"><div class="mname">Raul Guardiola</div><div class="mval">$18,000</div><div class="mstage">Future Follow-Up</div><div class="mage">since May 7 · biggest deal</div></div>
+    <div class="mcard big"><div class="mname">Scotie Rock</div><div class="mval">$8,410</div><div class="mstage">Proposal Sent</div><div class="mage">since May 8</div></div>
+    <div class="mcard big"><div class="mname">Maria Hilario</div><div class="mval">$8,240</div><div class="mstage">Proposal Sent</div><div class="mage">since May 12</div></div>
+    <div class="mcard big"><div class="mname">David Huether</div><div class="mval">$6,680</div><div class="mstage">Future Follow-Up</div><div class="mage">since May 6</div></div>
+    <div class="mcard"><div class="mname">Dexter Gilbert</div><div class="mval">$1,980</div><div class="mstage">Future Follow-Up</div><div class="mage">since May 6</div></div>
+    <div class="mcard"><div class="mname">Bryan Sibrian</div><div class="mval">$1,500</div><div class="mstage">Negotiation</div><div class="mage">since May 18</div></div>
+    <div class="mcard"><div class="mname">Vanessa Phipps</div><div class="mval">$1,100</div><div class="mstage">Proposal Sent</div><div class="mage">since May 9</div></div>
+  </div>
+
+  <!-- THE REFRAME -->
+  <div class="section-title">The Big Shift For Month 2</div>
+  <div class="reframe">
+    <h2>"Too many estimates" — let's fix the right problem.</h2>
+    <div class="punch">
+      The problem was never <span class="hl">how many</span> leads. It's <span class="hl">how many bad ones</span>
+      you had to drive out to.
+    </div>
+    <div class="split">
+      <div class="splitcard bad">
+        <div class="sh">? No Value Logged</div>
+        <div class="sn">16</div>
+        <div class="sd">of 25 leads have <b>no dollar amount</b> in the system. Today we find out together: were these dead/wrong-fit — or real jobs that just never got updated?</div>
+      </div>
+      <div class="splitcard good">
+        <div class="sh">✓ Confirmed Money</div>
+        <div class="sn">9</div>
+        <div class="sd">leads have real numbers attached — <b>$51,410</b> in won + open value. Just 4 of them = 80% of it.</div>
+      </div>
+    </div>
+    <div class="punch" style="font-size:18px">
+      Either way, the plan is the same: <span class="hl">not fewer leads — fewer BAD ones.</span>
+    </div>
+    <div class="quote">
+      If those 16 really were tire-kickers, that proves the point — we filter them out next month. If some
+      were real, we just found hidden money and we tighten the system so they never slip through again.
+      Next month: maybe 12 estimates instead of 25, but every one a Raul. Same pipeline, half the windshield time.
+    </div>
+  </div>
+
+  <!-- MONTH 2 — BUILT FROM JUAN'S FEEDBACK -->
+  <div class="section-title">Month 2 — Built From Your Feedback</div>
+  <div class="intro" style="margin-top:0">
+    Juan — I'm not going to guess what "better" looks like. <b>You tell me.</b> These are the dials I can turn
+    on the ads. Answer each one honestly and I'll tune the whole system around how YOU want to work.
+    No wrong answers — this is me building it for you.
+  </div>
+
+  <div class="goal"><div class="num">1</div><div class="gbody">
+    <h3>How far is too far to drive?</h3>
+    <p>Your biggest concern is leads being too far out. Right now the ads radiate from your <b>shop</b>.
+    I can re-center them on <b>mid-Houston</b> instead, or set a hard drive-time cap. What's your real limit?</p>
+    <div class="fb-opts" data-q="distance">
+      <div class="fbopt">30 min max</div><div class="fbopt">45 min max</div>
+      <div class="fbopt">1 hour max</div><div class="fbopt">Re-center pin to mid-Houston</div>
+      <div class="fbopt">Distance is fine, no change</div>
+    </div>
+    <textarea class="fb-note" placeholder="Which areas were too far? Any zones you WON'T drive to? Any you'd love more of?"></textarea>
+  </div></div>
+
+  <div class="goal"><div class="num">2</div><div class="gbody">
+    <h3>What jobs do you want MORE of — and less of?</h3>
+    <p>Tell me the projects worth your time so I can make the ads attract those and repel the rest.</p>
+    <div class="fb-opts" data-q="jobtype">
+      <div class="fbopt">Driveway gates</div><div class="fbopt">Walk/pedestrian gates</div>
+      <div class="fbopt">Full perimeter fencing</div><div class="fbopt">Railings / stairs</div>
+      <div class="fbopt">Repairs</div><div class="fbopt">Commercial</div>
+    </div>
+    <textarea class="fb-note" placeholder="Best job you did this month? Worst fit? What do you NOT want to drive out for anymore?"></textarea>
+  </div></div>
+
+  <div class="goal"><div class="num">3</div><div class="gbody">
+    <h3>What's the smallest job worth your time?</h3>
+    <p>I can filter out anything under a dollar amount before it ever reaches you. Where's your real floor?</p>
+    <div class="fb-opts" data-q="budget">
+      <div class="fbopt">$2K+</div><div class="fbopt">$5K+</div>
+      <div class="fbopt">$10K+</div><div class="fbopt">$15K+</div>
+      <div class="fbopt">Depends — I'll explain</div>
+    </div>
+    <textarea class="fb-note" placeholder="Are small jobs OK as filler between big ones, or a total waste? What size makes the drive worth it?"></textarea>
+  </div></div>
+
+  <div class="goal"><div class="num">4</div><div class="gbody">
+    <h3>How many good estimates a week — and when?</h3>
+    <p>This sets our lead target. I'd rather give you fewer, better ones spread out than slam your calendar.</p>
+    <div class="fb-opts" data-q="capacity">
+      <div class="fbopt">2–3 / week</div><div class="fbopt">4–5 / week</div>
+      <div class="fbopt">6–8 / week</div><div class="fbopt">As many as possible</div>
+    </div>
+    <textarea class="fb-note" placeholder="Best days/times for estimates? Days to avoid? Want them clustered or spread out?"></textarea>
+  </div></div>
+
+  <div class="goal"><div class="num">5</div><div class="gbody">
+    <h3>What slowed you down this month?</h3>
+    <p>Anything — the CRM, the appointment info, the texts, the drive, the proposals. If it's friction, I fix it.</p>
+    <textarea class="fb-note" placeholder="What was annoying or clunky? What would make your life easier? Be brutal — this is how I improve it."></textarea>
+  </div></div>
+
+  <!-- LIVE RANKING -->
+  <div class="section-title">Live Review — Rate Your Open Leads</div>
+  <div class="intro" style="margin-top:0">
+    Juan — the CRM isn't fully updated, so let's fix it together right here. For each lead: <b>tag the real
+    status</b> (alive / dead / already won / never updated), <b>rate it 1–5</b> on fit, and tell me what you saw.
+    By the end we'll have an <b>accurate pipeline</b> AND know exactly who to target next month.
+  </div>
+
+  <div id="leads" style="margin-top:16px"></div>
+
+  <div class="callout" style="background:var(--green-lt);border-color:#bfe0cc;color:#1e5538">
+    <b>Capacity check for Juan:</b> Knowing what you know now — how many GOOD estimates per week can you
+    comfortably run and still do great work? That number sets our lead target for June.
+  </div>
+</div>
+
+<div class="toolbar">
+  <button class="btn" onclick="window.print()">Save / Print This Review</button>
+  <div class="mini">Live data pulled from GHL · May 29, 2026</div>
+</div>
+
+<script>
+  // open FB leads to review — priced first (the money), then unpriced triage
+  const leads = [
+    {n:"Raul Guardiola", v:"$18,000", s:"Future Follow-Up", p:"p-follow", m:"May 7 · BIGGEST DEAL", ph:"Why waiting till June? What's the hold-up — price, timing, decision-maker?"},
+    {n:"Scotie Rock", v:"$8,410", s:"Proposal Sent", p:"p-prop", m:"May 8 · quoted", ph:"Proposal's been out 3 weeks. Still warm? What's their hesitation?"},
+    {n:"Maria Hilario", v:"$8,240", s:"Proposal Sent", p:"p-prop", m:"May 12 · quoted", ph:"Real buyer or shopping around? What did they say last?"},
+    {n:"David Huether", v:"$6,680", s:"Future Follow-Up", p:"p-follow", m:"May 6 · oldest big one", ph:"June timeline still real? Worth a nudge call now?"},
+    {n:"Dexter Gilbert", v:"$1,980", s:"Future Follow-Up", p:"p-follow", m:"May 6", ph:"Small but real — close it or let it sit?"},
+    {n:"Bryan Sibrian", v:"$1,500", s:"Negotiation", p:"p-neg", m:"May 18 · close to yes", ph:"What's left to close this one?"},
+    {n:"Vanessa Phipps", v:"$1,100", s:"Proposal Sent", p:"p-prop", m:"May 9", ph:"Worth your time or too small?"},
+    {n:"Chris Sommer", v:"$0", s:"Negotiation", p:"p-neg", m:"May 20 · needs a number", ph:"What's the project? Why no price yet?"},
+    {n:"Hernandez Quiroz", v:"$0", s:"Estimate Scheduled", p:"p-sched", m:"May 20 · gate, metal", ph:"Walk-through gate swap. Real budget or small job?"},
+    {n:"Michael A. Garcia", v:"$0", s:"Reschedule Estimate", p:"p-resched", m:"May 22 · new ad lead", ph:"Came from the new video ad. Good fit?"},
+    {n:"Umair Ashraf", v:"$0", s:"Reschedule Estimate", p:"p-resched", m:"May 23", ph:"Did he reschedule or ghost? Real?"},
+    {n:"Lawrence Humphrey", v:"$0", s:"Proposal Sent", p:"p-prop", m:"May 15 · no price set", ph:"Quote sent but no value logged — what was it?"},
+    {n:"Melissa Ramirez", v:"$0", s:"Proposal Sent", p:"p-prop", m:"May 16", ph:"Wood fencing job. Worth chasing?"},
+    {n:"Isela Barrera", v:"$0", s:"Proposal Sent", p:"p-prop", m:"May 19", ph:"Real buyer? What's the project size?"},
+    {n:"Sarathi Kalra", v:"$0", s:"Proposal Sent", p:"p-prop", m:"May 22 · new ad lead", ph:"From the new video ad. Good fit?"},
+    {n:"Kyle Armstrong Davis", v:"$0", s:"Contacted", p:"p-new", m:"May 25", ph:"Connected yet? First impression?"},
+    {n:"Bruce Smith", v:"$0", s:"Contacted", p:"p-new", m:"May 27 · small gate", ph:"Walk-gate swap, 2-3mo timeline. Worth it?"},
+    {n:"James & Mauro Dorsch", v:"$0", s:"New Lead", p:"p-new", m:"May 28 · freshest", ph:"Brand new — haven't talked yet."},
+  ];
+  const box = document.getElementById('leads');
+  leads.forEach((l,idx)=>{
+    const zero = l.v==="$0" ? "zero":"";
+    const el = document.createElement('div');
+    el.className='lead';
+    el.innerHTML = `
+      <div class="lead-head">
+        <div class="lh-left">
+          <div class="lead-name">${l.n}</div>
+          <div class="lead-val ${zero}">${l.v==="$0"?"no price yet":l.v}</div>
+          <div class="lead-meta">${l.m}</div>
+        </div>
+        <span class="pill ${l.p}">${l.s}</span>
+      </div>
+      <div class="lead-body">
+        <div class="rate-block">
+          <div class="rate-label">Real status (tap one)</div>
+          <div class="status">${["Alive","Dead","Already Won","Never Updated"].map(s=>`<div class="stag" data-s="${s}">${s}</div>`).join('')}</div>
+          <div class="rate-label" style="margin-top:12px">Lead Quality (1 = waste of time, 5 = dream client)</div>
+          <div class="stars">${[1,2,3,4,5].map(i=>`<div class="star">${i}</div>`).join('')}</div></div>
+        <div class="notes"><div class="rate-label">Juan's notes</div>
+          <textarea placeholder="${l.ph}"></textarea></div>
+      </div>`;
+    box.appendChild(el);
+  });
+  document.querySelectorAll('.stars').forEach(group=>{
+    const stars=[...group.children];
+    stars.forEach((s,i)=>s.addEventListener('click',()=>stars.forEach((x,j)=>x.classList.toggle('sel',j<=i))));
+  });
+  document.querySelectorAll('.status').forEach(group=>{
+    const tags=[...group.children];
+    tags.forEach(t=>t.addEventListener('click',()=>{
+      const on=t.classList.contains('sel');
+      tags.forEach(x=>x.classList.remove('sel'));
+      if(!on) t.classList.add('sel');
+    }));
+  });
+  // feedback chips: jobtype = multi-select, others single-select
+  document.querySelectorAll('.fb-opts').forEach(group=>{
+    const multi = group.dataset.q === 'jobtype';
+    const opts=[...group.children];
+    opts.forEach(o=>o.addEventListener('click',()=>{
+      if(multi){ o.classList.toggle('sel'); }
+      else{
+        const on=o.classList.contains('sel');
+        opts.forEach(x=>x.classList.remove('sel'));
+        if(!on) o.classList.add('sel');
+      }
+    }));
+  });
+</script>
+</body>
+</html>
