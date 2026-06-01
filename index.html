@@ -318,12 +318,11 @@
     <textarea class="fb-note" placeholder="What was annoying or clunky? What would make your life easier? Be brutal."></textarea>
   </div></div>
 
-  <!-- LIVE LEAD REVIEW -->
-  <div class="section-title">Live Review — Rate &amp; Clean Up Your Open Leads</div>
+  <!-- OPEN LEADS REFERENCE -->
+  <div class="section-title">Your 29 Open Leads — Rate Each in the CRM</div>
   <div class="intro" style="margin-bottom:16px">
-    The CRM isn't fully updated — let's fix it together right here. For each lead: <b>tag the real status</b>,
-    <b>rate it 1–5</b> on fit, and tell me what you saw. By the end we'll have an accurate pipeline AND know
-    who to target next month.
+    Here's everyone currently in play, by value. <b>Go through these in the CRM</b> — rate each 1–5 and drop
+    your notes right on the contact, so it all lives in one place. This list is just your map.
   </div>
   <div id="leads"></div>
 
@@ -401,19 +400,9 @@
           <div class="lead-meta">${l.m}</div>
         </div>
         <span class="pill ${l.p}">${l.s}</span>
-      </div>
-      <div class="lead-body">
-        <div class="rate-block">
-          <div class="rate-label">Real status (tap one)</div>
-          <div class="status">${["Alive","Dead","Already Won","Never Updated"].map(s=>`<div class="stag" data-s="${s}">${s}</div>`).join('')}</div>
-          <div class="rate-label" style="margin-top:12px">Lead Quality (1 = waste of time, 5 = dream client)</div>
-          <div class="stars">${[1,2,3,4,5].map(i=>`<div class="star">${i}</div>`).join('')}</div></div>
-        <div class="notes"><div class="rate-label">Juan's notes</div><textarea placeholder="${l.ph}"></textarea></div>
       </div>`;
     box.appendChild(el);
   });
-  document.querySelectorAll('.stars').forEach(g=>{const s=[...g.children];s.forEach((x,i)=>x.addEventListener('click',()=>s.forEach((y,j)=>y.classList.toggle('sel',j<=i))))});
-  document.querySelectorAll('.status').forEach(g=>{const t=[...g.children];t.forEach(x=>x.addEventListener('click',()=>{const on=x.classList.contains('sel');t.forEach(y=>y.classList.remove('sel'));if(!on)x.classList.add('sel')}))});
   document.querySelectorAll('.fb-opts').forEach(g=>{const multi=g.dataset.q==='jobtype';const o=[...g.children];o.forEach(x=>x.addEventListener('click',()=>{if(multi){x.classList.toggle('sel')}else{const on=x.classList.contains('sel');o.forEach(y=>y.classList.remove('sel'));if(!on)x.classList.add('sel')}}))});
 </script>
 </body>
